@@ -12,9 +12,9 @@ import typer
 app = typer.Typer(help="Tax-lot relief CLI with FIFO/LIFO/HIFO selection via Typer.")  #I have used Typer to create a CLI application.
 
 class Algo (str, Enum): # Defined a class called Algo that will hold the different algorithms for tax-lot relief.
-    FIFO = "FIFO"
-    LIFO = "LIFO"
-    HIFO = "HIFO"
+    fifo = "FIFO"
+    lifo = "LIFO"
+    hifo = "HIFO"
 
 def f_qty(x: Decimal) -> str:
     return format(x, '.1f')
@@ -131,11 +131,12 @@ def print_table(rows):
         print(fmt_row(r))
 
 # ----- Typer CLI -----
+
 @app.command()
 def run(
     holdings: Path = typer.Option(..., exists=True, readable=True, help="Path to tax_lot_holdings_file CSV"),
     sells: Path = typer.Option(..., exists=True, readable=True, help="Path to sell_list_file CSV"),
-    algo: Algo = typer.Option(None, help="Algorithm: fifo | lifo | hifo", prompt=True),
+    algo: str = typer.Option(None, case_sensitive=False, help="Algorithm: fifo | lifo | hifo", prompt=True)
 ):
     """
     Apply lot relief per algorithm and print the aligned table.
