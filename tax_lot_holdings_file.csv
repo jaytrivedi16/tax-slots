@@ -1,0 +1,5 @@
+ticker, no-shares-purchased, purchase-price, purchase-date
+BP, 20, 40.00, 2018-08-01
+BP, 30, 42.50, 2018-09-01
+F, 10, 9.50, 2018-09-05
+F, 15, 8.00, 2019-10-05
