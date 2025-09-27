@@ -1,11 +1,13 @@
-import typer
+from __future__ import annotations
+
 import csv
 from datetime import datetime
 from decimal import Decimal
 from pathlib import Path
 from typing import List, Tuple
-from __future__ import annotations
+from enum import Enum
 
+import typer
 
 app = typer.Typer(help="Tax-lot relief CLI with FIFO/LIFO/HIFO selection via Typer.")  #I have used Typer to create a CLI application.
 
@@ -138,7 +140,7 @@ def run(
     """
     Apply lot relief per algorithm and print the aligned table.
     """
-    lots = load_holdings(holdings)
+    lots = input_files(holdings)
     sell_list = load_sells(sells)
     rows = relieve(lots, sell_list, algo)
     print_table(rows)
